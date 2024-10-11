@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:sanchita/common/color_extensions.dart';
 import 'package:sanchita/firebase_options.dart';
@@ -11,7 +12,15 @@ import 'cobntrollers/userController.dart';
 void main() async {
   try {
     WidgetsFlutterBinding.ensureInitialized();
-    print(DefaultFirebaseOptions.currentPlatform);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+    ]);
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent, // transparent status bar
+        statusBarIconBrightness: Brightness.light // dark text for status bar
+        ));
+    
     await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform);
   } catch (error) {
