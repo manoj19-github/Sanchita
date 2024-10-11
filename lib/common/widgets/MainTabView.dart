@@ -90,6 +90,9 @@ class _MainTabViewState extends State<MainTabView> {
                             "assets/img/home.png",
                             width: 25,
                             height: 25,
+                              color: selectedTab == 0
+                                  ? TColor.white
+                                  : TColor.gray30
                           ),
                         ),
                         IconButton(
@@ -98,6 +101,9 @@ class _MainTabViewState extends State<MainTabView> {
                             "assets/img/budgets.png",
                             width: 25,
                             height: 25,
+                              color: selectedTab == 1
+                                  ? TColor.white
+                                  : TColor.gray30
                           ),
                         ),
                         SizedBox(
@@ -111,8 +117,10 @@ class _MainTabViewState extends State<MainTabView> {
                                 backgroundColor: TColor.secondary,
                                 child: Icon(
                                   Icons.add,
-                                  color: Colors.white,
                                   size: 30,
+                                    color: selectedTab == 2
+                                        ? TColor.white
+                                        : TColor.gray30
                                 ),
                               ),
                             ),
@@ -124,6 +132,9 @@ class _MainTabViewState extends State<MainTabView> {
                             "assets/img/calendar.png",
                             width: 25,
                             height: 25,
+                              color: selectedTab == 3
+                                  ? TColor.white
+                                  : TColor.gray30
                           ),
                         ),
                         IconButton(
@@ -132,6 +143,9 @@ class _MainTabViewState extends State<MainTabView> {
                             "assets/img/creditcards.png",
                             width: 25,
                             height: 25,
+                              color: selectedTab == 4
+                                  ? TColor.white
+                                  : TColor.gray30
                           ),
                         ),
                       ],
