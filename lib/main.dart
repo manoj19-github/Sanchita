@@ -1,16 +1,36 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sanchita/common/color_extensions.dart';
+import 'package:sanchita/firebase_options.dart';
 import 'package:sanchita/screens/login/WelcomeView.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'cobntrollers/userController.dart';
+
+void main() async {
+  try {
+    WidgetsFlutterBinding.ensureInitialized();
+    print(DefaultFirebaseOptions.currentPlatform);
+    await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform);
+  } catch (error) {
+    print(error);
+  }
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  UserController _userController = Get.put(UserController());
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final loggedInUserDetails = FirebaseAuth.instance.currentUser;
+    if (loggedInUserDetails != null) {
+      _userController.storeLoginDetails(loggedInUserDetails);
+      print("user is in main 33 line >>>>>>>>>>>>>>>> ${loggedInUserDetails}");
+    }
     return MaterialApp(
       title: 'Sanchita',
       debugShowCheckedModeBanner: false,
