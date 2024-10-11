@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:sanchita/common/color_extensions.dart';
+import 'package:sanchita/common/widgets/MainTabView.dart';
 import 'package:sanchita/firebase_options.dart';
 import 'package:sanchita/screens/login/WelcomeView.dart';
 
@@ -53,9 +54,10 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: Scaffold(
-        body: WelcomeView(),
-      ),
+        home: const MainTabView()
+        // home: Scaffold(
+        //   body: WelcomeView(),
+        // ),
     );
   }
 }
