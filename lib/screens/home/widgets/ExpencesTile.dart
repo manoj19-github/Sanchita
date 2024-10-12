@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sanchita/common/color_extensions.dart';
+import 'package:sanchita/utils.dart';
 
 class ExpencesTile extends StatelessWidget {
   final Map expenceObj;
@@ -46,11 +47,8 @@ class ExpencesTile extends StatelessWidget {
                 const SizedBox(width: 8),
                 Row(
                   children: [
-                    Icon(Icons.currency_rupee_outlined,
-                        size: 13, color: TColor.white),
-                    const SizedBox(width: 1),
                     Text(
-                      expenceObj["price"],
+                      UTILMAIN.indianRupeesFormat(expenceObj["price"]),
                       style: TextStyle(
                           color: TColor.white,
                           fontSize: 14,
