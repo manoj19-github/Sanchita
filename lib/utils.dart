@@ -12,6 +12,6 @@ class UTILMAIN {
         name: "INR",
         locale: 'en_IN',
         decimalDigits: 0, // change it to get decimal places
-        symbol: '₹ ',
+        symbol: '₹',
       ).format(double.tryParse(value));
 }

@@ -43,7 +43,7 @@ class HomePageUpperWidget extends StatelessWidget {
             child: Container(
                 width: media.width * 0.63,
                 height: media.height * 0.014,
-                child: CustomPaint(painter: CustomArcPainter())),
+                child: CustomPaint(painter: CustomArcPainter(end: 220))),
           ),
           Column(
             mainAxisSize: MainAxisSize.min,
