@@ -5,6 +5,7 @@ import 'package:sanchita/cobntrollers/homePage.controller.dart';
 import 'package:sanchita/common/color_extensions.dart';
 import 'package:sanchita/common/widgets/AppLogo.dart';
 import 'package:sanchita/common/widgets/BudgetRow.dart';
+import 'package:sanchita/screens/budget/BudgetPageUpperWidget.dart';
 import 'package:sanchita/screens/home/widgets/ExpencesTile.dart';
 import 'package:sanchita/screens/home/widgets/HomePageTabs.dart';
 import 'package:sanchita/screens/home/widgets/HomePageUpperWidget.dart';
@@ -24,7 +25,9 @@ class BudgetScreenMain extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(height: 10),
+              // const SizedBox(height: 10),
+              BudgetPageUpperWidget(),
+              // const SizedBox(height: 10),
               // HomePageUpperWidget(),
               // HomePageTabs(),
 
