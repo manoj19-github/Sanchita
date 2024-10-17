@@ -14,4 +14,15 @@ class UTILMAIN {
         decimalDigits: 0, // change it to get decimal places
         symbol: '₹',
       ).format(double.tryParse(value));
+
+      
+  static bool isToday(DateTime date) {
+    final now = DateTime.now();
+    return now.day == date.day &&
+        now.month == date.month &&
+        now.year == date.year;
+  }
+
+ 
+ 
 }
