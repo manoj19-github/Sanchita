@@ -14,7 +14,7 @@ class CalendarScreenUpperWidget extends StatelessWidget {
       width: media.width,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-          color: TColor.gray70.withOpacity(0.5),
+          color: TColor.gray70.withOpacity(0.9),
           borderRadius: const BorderRadius.only(
               bottomLeft: Radius.circular(25),
               bottomRight: Radius.circular(25))),
