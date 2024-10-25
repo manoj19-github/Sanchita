@@ -17,11 +17,33 @@ class CalendarBottomSheet extends StatefulWidget {
 }
 
 class _CalendarBottomSheetState extends State<CalendarBottomSheet> {
+  CalendarController _calendarController = Get.put(CalendarController());
   // @override
   // void initState() {
   //   super.initState();
   //   widget.focusedDate = widget.calendarController.selectedData;
   // }
+
+  void _changeMonth(int monthOffset) {
+    setState(() {
+      widget.focusedDate = DateTime(
+        widget.focusedDate.year,
+        widget.focusedDate.month + monthOffset,
+        1,
+      );
+    });
+    _calendarController.onDateChange(DateTime(
+      widget.focusedDate.year,
+      widget.focusedDate.month + monthOffset,
+      1,
+    ));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    widget.focusedDate = widget.calendarController.selectedData.value;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +58,7 @@ class _CalendarBottomSheetState extends State<CalendarBottomSheet> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
+
                   InkWell(
                       child: Icon(Icons.close, color: TColor.white),
                       onTap: () {
@@ -45,20 +68,37 @@ class _CalendarBottomSheetState extends State<CalendarBottomSheet> {
               ),
             ),
             SizedBox(height: 40),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                    "${UTILMAIN.months[DateTime.now().month - 1]} ${DateTime.now().year}",
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  InkWell(
+                      onTap: () {
+                        _changeMonth(-1);
+                      },
+                      child: Icon(Icons.arrow_back_ios, color: TColor.white)),
+                  Text(
+                    "${UTILMAIN.months[widget.focusedDate.month - 1]} ${widget.focusedDate.year}",
                     style: TextStyle(
                         color: TColor.white,
                         fontSize: 20,
-                        fontWeight: FontWeight.bold))
-              ],
+                        fontWeight: FontWeight.bold),
+                  ),
+                  InkWell(
+                      onTap: () {
+                        _changeMonth(1);
+                      },
+                      child: Icon(Icons.keyboard_arrow_right,
+                          color: TColor.white, size: 36)),
+                ],
+              ),
             ),
             TableCalendar(
               pageJumpingEnabled: false,
               headerVisible: false,
+
 
               headerStyle:
                   HeaderStyle(decoration: BoxDecoration(color: Colors.red)),
@@ -68,6 +108,9 @@ class _CalendarBottomSheetState extends State<CalendarBottomSheet> {
               firstDay: DateTime.utc(2010, 10, 16),
               lastDay: DateTime.utc(2030, 3, 14),
               focusedDay: widget.focusedDate,
+              selectedDayPredicate: (day) {
+                return isSameDay(widget.focusedDate, day);
+              },
               onPageChanged: (focusedDay) {
                 print("date in current calendar >>>>>>>>> ${focusedDay}");
                 setState(() {

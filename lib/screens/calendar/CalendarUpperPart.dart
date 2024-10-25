@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sanchita/cobntrollers/calendar.controller.dart';
 import 'package:sanchita/common/color_extensions.dart';
 import 'package:sanchita/screens/calendar/CalendarBottomSheet.dart';
 import 'package:sanchita/screens/calendar/CalendarTimeLine.dart';
 import 'package:sanchita/utils.dart';
 
 class CalendarUpperPart extends StatelessWidget {
-  const CalendarUpperPart({super.key});
+  CalendarUpperPart({super.key});
+  CalendarController _calendarController = Get.put(CalendarController());
 
   @override
   Widget build(BuildContext context) {
@@ -62,23 +65,28 @@ class CalendarUpperPart extends StatelessWidget {
                     : null,
                 alignment: Alignment.center,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(
-                        UTILMAIN.months[DateTime.now().month - 1],
+                      Obx(
+                        () => Text(
+                          UTILMAIN.months[
+                              _calendarController.selectedData.value.month - 1],
                         style: TextStyle(
                             color: TColor.gray30,
+                              
                             fontSize: 14,
                             fontWeight: FontWeight.w600),
+                        ),
                       ),
                       Icon(Icons.expand_more, size: 16, color: TColor.gray30)
                     ],
                   ),
                 ),
               ),
-            )
+            ),
           ],
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
         ),

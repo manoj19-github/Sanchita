@@ -1,6 +1,11 @@
 import 'package:intl/intl.dart';
 
 class UTILMAIN {
+  static bool isSameDay(DateTime? dateA, DateTime? dateB) {
+    return dateA?.year == dateB?.year &&
+        dateA?.month == dateB?.month &&
+        dateA?.day == dateB?.day;
+  }
   static RegExp regExp =
       RegExp(r'^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$');
   static String clientGithubId = "Ov23ctPi76Fo6nzUTGpD";

@@ -1,37 +1,20 @@
-import 'package:flutter/material.dart';
 import 'package:easy_date_timeline/easy_date_timeline.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sanchita/cobntrollers/calendar.controller.dart';
 import 'package:sanchita/common/color_extensions.dart';
 import 'package:sanchita/utils.dart';
 
-
-class CalendarTimeline extends StatefulWidget {
+class CalendarTimeline extends StatelessWidget {
+  CalendarController _calendarController = Get.put(CalendarController());
   CalendarTimeline({super.key});
-  DateTime currentDate = DateTime.now();
-  CalendarController calendarController = Get.put(CalendarController());
 
-  @override
-  State<CalendarTimeline> createState() => _CalendarTimeState();
-}
-
-// class _CalendarTimeState extends State<CalendarTime> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container();
-//   }
-// }
-
-class _CalendarTimeState extends State<CalendarTimeline> {
-  
-
+   
   @override
   Widget build(BuildContext context) {
-    print("current Date >>>>>>>>>>>>>> , ${widget.currentDate}");
-    print(
-        "selected Date >>>>>>>>>>>>>> , ${widget.calendarController.selectedData}");
     return Container(
-      child: EasyInfiniteDateTimeLine(
+      child: Obx(
+        () => EasyInfiniteDateTimeLine(
         showTimelineHeader: false,
         selectionMode: const SelectionMode.autoCenter(),
         timeLineProps: const EasyTimeLineProps(
@@ -39,21 +22,22 @@ class _CalendarTimeState extends State<CalendarTimeline> {
           separatorPadding: 16.0, // padding between days
           // decoration: BoxDecoration()
         ),
-        controller: widget.calendarController.controller,
+          controller: _calendarController.controller,
         activeColor: Colors.white,
-        firstDate: DateTime.utc(DateTime.now().year, DateTime.now().month, 1),
-        focusDate: widget.calendarController.selectedData,
+          firstDate: DateTime.utc(_calendarController.selectedData.value.year,
+              _calendarController.selectedData.value.month, 1),
+          focusDate: _calendarController.selectedData.value,
         
-        lastDate: DateTime(DateTime.now().year, DateTime.now().month,
-            DateTime(DateTime.now().month + 1).subtract(Duration(days: 1)).day),
+          lastDate: DateTime(
+              _calendarController.selectedData.value.year,
+              _calendarController.selectedData.value.month,
+              DateTime(_calendarController.selectedData.value.month + 1)
+                  .subtract(Duration(days: 1))
+                  .day),
             
         onDateChange: (selectedDate) {
           print("hit date ${selectedDate}");
-
-          setState(() {
-            widget.calendarController.selectedData = selectedDate;
-            widget.currentDate = selectedDate;
-          });
+            _calendarController.onDateChange(selectedDate);
         },
         
         dayProps: const EasyDayProps(
@@ -71,6 +55,7 @@ class _CalendarTimeState extends State<CalendarTimeline> {
                 ],
               ),
             ),
+          
           ),
           inactiveDayStyle: DayStyle(
             borderRadius: 48.0,
@@ -97,10 +82,12 @@ class _CalendarTimeState extends State<CalendarTimeline> {
             // SelectionMode.autoCenter() or SelectionMode.alwaysFirst().
             onTap: onTap,
             child: CircleAvatar(
-              backgroundColor: UTILMAIN.isToday(date)
-                  ? TColor.gray60.withOpacity(0.7)
+                backgroundColor: UTILMAIN.isSameDay(
+                        DateTime.now(), _calendarController.selectedData.value)
+                    ? TColor.gray30.withOpacity(0.3)
+                    
                   : isSelected ||
-                          widget.calendarController.selectedData
+                            _calendarController.selectedData.value
                                   .compareTo(date) ==
                               0
                       ? TColor.secondary
@@ -135,6 +122,7 @@ class _CalendarTimeState extends State<CalendarTimeline> {
             ),
           );
         },
+      ),
       ),
     );
   }
