@@ -32,6 +32,7 @@ class _CalendarTimeState extends State<CalendarTimeline> {
         "selected Date >>>>>>>>>>>>>> , ${widget.calendarController.selectedData}");
     return Container(
       child: EasyInfiniteDateTimeLine(
+        showTimelineHeader: false,
         selectionMode: const SelectionMode.autoCenter(),
         timeLineProps: const EasyTimeLineProps(
           //hPadding: 16.0, // padding from left and right
@@ -89,15 +90,15 @@ class _CalendarTimeState extends State<CalendarTimeline> {
           VoidCallback onTap,
         ) {
           return InkResponse(
+            
             // You can use `InkResponse` to make your widget clickable.
             // The `onTap` callback responsible for triggering the `onDateChange`
             // callback and animating to the selected date if the `selectionMode` is
             // SelectionMode.autoCenter() or SelectionMode.alwaysFirst().
             onTap: onTap,
             child: CircleAvatar(
-              // use `isSelected` to specify whether the widget is selected or not.
               backgroundColor: UTILMAIN.isToday(date)
-                  ? TColor.secondaryG.withOpacity(0.3)
+                  ? TColor.gray60.withOpacity(0.7)
                   : isSelected ||
                           widget.calendarController.selectedData
                                   .compareTo(date) ==
@@ -107,6 +108,7 @@ class _CalendarTimeState extends State<CalendarTimeline> {
               radius: 10.0,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                
                 children: [
                   Flexible(
                     child: Text(
@@ -123,6 +125,10 @@ class _CalendarTimeState extends State<CalendarTimeline> {
                         color: isSelected ? Colors.white : null,
                       ),
                     ),
+                  ),
+                  Flexible(
+                    child: Icon(Icons.bookmark,
+                        size: 6, color: Colors.greenAccent),
                   ),
                 ],
               ),

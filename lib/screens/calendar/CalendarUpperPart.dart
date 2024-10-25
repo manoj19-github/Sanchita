@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sanchita/common/color_extensions.dart';
+import 'package:sanchita/screens/calendar/CalendarBottomSheet.dart';
 import 'package:sanchita/screens/calendar/CalendarTimeLine.dart';
+import 'package:sanchita/utils.dart';
 
 class CalendarUpperPart extends StatelessWidget {
   const CalendarUpperPart({super.key});
@@ -41,7 +43,14 @@ class CalendarUpperPart extends StatelessWidget {
                   fontWeight: FontWeight.w500),
             ),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                showModalBottomSheet(
+                    isScrollControlled: true,
+                    context: context,
+                    builder: (ctx) => CalendarBottomSheet(
+                          parentContext: ctx,
+                        ));
+              },
               child: Container(
                 decoration: true
                     ? BoxDecoration(
@@ -58,7 +67,7 @@ class CalendarUpperPart extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        "October",
+                        UTILMAIN.months[DateTime.now().month - 1],
                         style: TextStyle(
                             color: TColor.gray30,
                             fontSize: 14,
