@@ -18,21 +18,26 @@ class CalendarUpperPart extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            Column(
+              children: [
+                Text(
               "Calendar",
               style: TextStyle(
                   color: TColor.gray30,
-                  fontSize: 20,
+                      fontSize: 38,
                   fontWeight: FontWeight.w500),
-            ),
-            const SizedBox(width: 8),
+                ),
             Text(
               "(Expense Schedule)",
               style: TextStyle(
                   color: TColor.gray10,
-                  fontSize: 12,
+                      fontSize: 22,
                   fontWeight: FontWeight.bold),
             ),
+
+              ],
+            )
+
           ],
         ),
         const SizedBox(height: 10),
@@ -72,6 +77,7 @@ class CalendarUpperPart extends StatelessWidget {
                     children: [
                       Obx(
                         () => Text(
+                          
                           UTILMAIN.months[
                               _calendarController.selectedData.value.month - 1],
                         style: TextStyle(

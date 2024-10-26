@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sanchita/cobntrollers/calendar.controller.dart';
 import 'package:sanchita/common/color_extensions.dart';
 import 'package:sanchita/screens/calendar/CalendarUpperPart.dart';
 import 'package:sanchita/screens/home/widgets/StatusButton.dart';
 
 class CalendarScreenUpperWidget extends StatelessWidget {
-  const CalendarScreenUpperWidget({super.key});
+  CalendarScreenUpperWidget({super.key});
+  CalendarController _calendarController = Get.put(CalendarController());
+
 
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
+    print(
+        "Selected Date >>>>>>>>>>>>>>>>>>>>>>> ${_calendarController.selectedData.value}");
+    print(
+        "Selected Date  2 >>>>>>>>>>>>>>>>>>>>>>> ${_calendarController.selectedData.value.year} , ${_calendarController.selectedData.value.month} , ${_calendarController.selectedData.value.day} ");
+    print(
+        " is true >>> ${_calendarController.selectedData.value.year >= DateTime.now().year && _calendarController.selectedData.value.month >= DateTime.now().month && _calendarController.selectedData.value.day >= DateTime.now().day ? "yes" : "no"}");
     return Container(
-      height: media.height * 0.45,
+      height: media.height * 0.44,
       width: media.width,
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -20,7 +30,53 @@ class CalendarScreenUpperWidget extends StatelessWidget {
               bottomRight: Radius.circular(25))),
       child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: CalendarUpperPart()),
+        child: Obx(
+          () => Column(
+            children: [
+              CalendarUpperPart(),
+              _calendarController.selectedData.value.year >=
+                          DateTime.now().year &&
+                      _calendarController.selectedData.value.month >=
+                          DateTime.now().month &&
+                      _calendarController.selectedData.value.day >=
+                          DateTime.now().day
+                  ? InkWell(
+                      borderRadius: BorderRadius.circular(16),
+                      onTap: () {},
+                      child: Container(
+                        height: 50,
+                        padding: const EdgeInsets.all(10),
+                        margin: const EdgeInsets.symmetric(horizontal: 15),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: TColor.border.withOpacity(0.15),
+                          ),
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Add your upcoming bills",
+                              style: TextStyle(
+                                  color: TColor.white,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            const SizedBox(width: 12),
+                            Icon(Icons.price_change_rounded,
+                                color: TColor.white, size: 25)
+                          ],
+                        ),
+                      ),
+                    )
+                  : Container()
+            ],
+          ),
+        ),
+      ),
+
     );
   }
 }

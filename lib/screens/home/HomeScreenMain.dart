@@ -7,6 +7,7 @@ import 'package:sanchita/screens/home/widgets/HomePageTabs.dart';
 import 'package:sanchita/screens/home/widgets/HomePageUpperWidget.dart';
 import 'package:sanchita/screens/home/widgets/SegmentBtn.dart';
 import 'package:sanchita/screens/home/widgets/UpcomingBills.dart';
+import 'package:sanchita/utils.dart';
 
 class HomeScreenMain extends StatelessWidget {
   HomeScreenMain({super.key});
@@ -21,6 +22,22 @@ class HomeScreenMain extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              Container(
+                padding: EdgeInsets.only(top: 20),
+                width: media.width,
+                decoration: BoxDecoration(
+                  color: TColor.gray70.withOpacity(0.5),
+                ),
+                child: Text(
+                  "${UTILMAIN.months[DateTime.now().month - 1]},  ${DateTime.now().year}",
+                  style: TextStyle(
+                    color: TColor.gray30,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
               HomePageUpperWidget(),
               HomePageTabs(),
               Obx(

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:sanchita/cobntrollers/calendar.controller.dart';
 import 'package:sanchita/common/color_extensions.dart';
 import 'package:sanchita/utils.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class CalendarTimeline extends StatelessWidget {
   CalendarController _calendarController = Get.put(CalendarController());
@@ -12,6 +13,8 @@ class CalendarTimeline extends StatelessWidget {
    
   @override
   Widget build(BuildContext context) {
+    print(
+        "LLLLLLLLLLLLL >>>>>  ${_calendarController.onTapSelectedDate.value}");
     return Container(
       child: Obx(
         () => EasyInfiniteDateTimeLine(
@@ -83,15 +86,25 @@ class CalendarTimeline extends StatelessWidget {
             onTap: onTap,
             child: CircleAvatar(
                 backgroundColor: UTILMAIN.isSameDay(
+                        DateTime.now(),
+                            _calendarController.onTapSelectedDate.value) &&
+                        _calendarController.selectedData.value
+                                .compareTo(date) ==
+                            0
+                    ? TColor.secondary
+                    : UTILMAIN.isSameDay(
                         DateTime.now(), _calendarController.selectedData.value)
                     ? TColor.gray30.withOpacity(0.3)
                     
                   : isSelected ||
                             _calendarController.selectedData.value
                                   .compareTo(date) ==
-                              0
+                                    0 
+                            
                       ? TColor.secondary
-                      : TColor.gray30.withOpacity(0.8),
+                            : UTILMAIN.isToday(date)
+                                ? TColor.gray30.withOpacity(0.3)
+                                : TColor.gray30.withOpacity(0.8),
               radius: 10.0,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -101,7 +114,9 @@ class CalendarTimeline extends StatelessWidget {
                     child: Text(
                       date.day.toString(),
                       style: TextStyle(
-                        color: isSelected ? Colors.white : null,
+                          color: isSelected || UTILMAIN.isToday(date)
+                              ? Colors.white
+                              : null,
                       ),
                     ),
                   ),
@@ -109,7 +124,9 @@ class CalendarTimeline extends StatelessWidget {
                     child: Text(
                       EasyDateFormatter.shortDayName(date, "en_US"),
                       style: TextStyle(
-                        color: isSelected ? Colors.white : null,
+                          color: isSelected || UTILMAIN.isToday(date)
+                              ? Colors.white
+                              : null,
                       ),
                     ),
                   ),

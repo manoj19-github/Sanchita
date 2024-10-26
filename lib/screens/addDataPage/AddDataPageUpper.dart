@@ -6,8 +6,8 @@ import 'package:sanchita/screens/home/widgets/SmallAppLogo.dart';
 import 'package:sanchita/screens/home/widgets/StatusButton.dart';
 import 'package:sanchita/utils.dart';
 
-class HomePageUpperWidget extends StatelessWidget {
-  const HomePageUpperWidget({super.key});
+class AddDataPageUpper extends StatelessWidget {
+  const AddDataPageUpper({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class HomePageUpperWidget extends StatelessWidget {
     return Container(
       height: media.height * 0.45,
       width: media.width,
-      padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
           color: TColor.gray70.withOpacity(0.5),
           borderRadius: const BorderRadius.only(
@@ -77,7 +77,7 @@ class HomePageUpperWidget extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Text(
-                    "Add your income",
+                    "See your budget",
                     style: TextStyle(
                         color: TColor.white,
                         fontSize: 12,

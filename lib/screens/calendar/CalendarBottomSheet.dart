@@ -17,7 +17,7 @@ class CalendarBottomSheet extends StatefulWidget {
 }
 
 class _CalendarBottomSheetState extends State<CalendarBottomSheet> {
-  CalendarController _calendarController = Get.put(CalendarController());
+  CalendarController calendarController = Get.put(CalendarController());
   // @override
   // void initState() {
   //   super.initState();
@@ -32,9 +32,9 @@ class _CalendarBottomSheetState extends State<CalendarBottomSheet> {
         1,
       );
     });
-    _calendarController.onDateChange(DateTime(
-      widget.focusedDate.year,
-      widget.focusedDate.month + monthOffset,
+    calendarController.onDateChange(DateTime(
+      widget.calendarController.selectedData.value.year,
+      widget.calendarController.selectedData.value.month + monthOffset,
       1,
     ));
   }

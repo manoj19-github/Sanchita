@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 
 class CalendarController extends GetxController {
   var selectedData = DateTime.now().obs;
+  var onTapSelectedDate =
+      DateTime(DateTime.now().year, DateTime.now().month - 1, 1).obs;
   final EasyInfiniteDateTimelineController controller =
       EasyInfiniteDateTimelineController();
   @override
@@ -12,5 +14,6 @@ class CalendarController extends GetxController {
   }
   void onDateChange(dynamic date) {
     selectedData.value = date;
+    onTapSelectedDate.value = date;
   }
 }

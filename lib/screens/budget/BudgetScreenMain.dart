@@ -11,6 +11,7 @@ import 'package:sanchita/screens/home/widgets/HomePageTabs.dart';
 import 'package:sanchita/screens/home/widgets/HomePageUpperWidget.dart';
 import 'package:sanchita/screens/home/widgets/SegmentBtn.dart';
 import 'package:sanchita/screens/home/widgets/UpcomingBills.dart';
+import 'package:sanchita/utils.dart';
 
 class BudgetScreenMain extends StatelessWidget {
   BudgetScreenMain({super.key});
@@ -26,6 +27,19 @@ class BudgetScreenMain extends StatelessWidget {
           child: Column(
             children: [
               // const SizedBox(height: 10),
+              Container(
+                padding: EdgeInsets.only(top: 20),
+                width: media.width,
+                child: Text(
+                  "${UTILMAIN.months[DateTime.now().month - 1]},  ${DateTime.now().year}",
+                  style: TextStyle(
+                    color: TColor.gray30,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
               BudgetPageUpperWidget(),
               // const SizedBox(height: 10),
               // HomePageUpperWidget(),
@@ -73,46 +87,7 @@ class BudgetScreenMain extends StatelessWidget {
                     }),
               ),
               const SizedBox(height: 15),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(16),
-                  onTap: () {},
-                  child: DottedBorder(
-                    dashPattern: const [3, 3],
-                    strokeWidth: 1,
-                    borderType: BorderType.RRect,
-                    radius: Radius.circular(12),
-                    color: TColor.gray40,
-                    child: Container(
-                      height: 55,
-                      padding: const EdgeInsets.all(10),
-                      margin: const EdgeInsets.symmetric(horizontal: 15),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          
-                          
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Add new category",
-                            style: TextStyle(
-                                color: TColor.gray30,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600),
-                          ),
-                          const SizedBox(width: 10),
-                          Image.asset("assets/img/add.png",
-                              width: 15, height: 15, color: TColor.gray30)
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              
             ],
           ),
         ),

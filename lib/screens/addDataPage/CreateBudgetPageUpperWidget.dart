@@ -3,8 +3,8 @@ import 'package:sanchita/common/color_extensions.dart';
 import 'package:sanchita/screens/budget/BudgetTrackerWidget.dart';
 import 'package:sanchita/utils.dart';
 
-class BudgetPageUpperWidget extends StatelessWidget {
-  const BudgetPageUpperWidget({super.key});
+class CreateBudgetPageUpperWidget extends StatelessWidget {
+  const CreateBudgetPageUpperWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,11 @@ class BudgetPageUpperWidget extends StatelessWidget {
                 color: TColor.white, fontSize: 30, fontWeight: FontWeight.w700),
           ),
           Text(
-            "Budget of this month",
+            "of " +
+                UTILMAIN.months[DateTime.now().month - 1] +
+                ",  " +
+                DateTime.now().year.toString() +
+                " budget",
             style: TextStyle(
                 color: TColor.gray30,
                 fontSize: 18,
