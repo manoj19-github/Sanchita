@@ -13,12 +13,6 @@ class CalendarScreenUpperWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
-    print(
-        "Selected Date >>>>>>>>>>>>>>>>>>>>>>> ${_calendarController.selectedData.value}");
-    print(
-        "Selected Date  2 >>>>>>>>>>>>>>>>>>>>>>> ${_calendarController.selectedData.value.year} , ${_calendarController.selectedData.value.month} , ${_calendarController.selectedData.value.day} ");
-    print(
-        " is true >>> ${_calendarController.selectedData.value.year >= DateTime.now().year && _calendarController.selectedData.value.month >= DateTime.now().month && _calendarController.selectedData.value.day >= DateTime.now().day ? "yes" : "no"}");
     return Container(
       height: media.height * 0.44,
       width: media.width,

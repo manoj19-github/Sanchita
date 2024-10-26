@@ -6,6 +6,7 @@ import 'package:sanchita/screens/budget/BudgetScreenMain.dart';
 import 'package:sanchita/screens/calendar/CalendarScreenMain.dart';
 import 'package:sanchita/screens/home/HomeScreenMain.dart';
 import 'package:sanchita/screens/subject/SubjectScreenMain.dart';
+import 'package:sanchita/screens/yearWiseRecords/YearWiseRecordsMain.dart';
 
 class MainTabView extends StatefulWidget {
   const MainTabView({super.key});
@@ -57,7 +58,7 @@ class _MainTabViewState extends State<MainTabView> {
         {
           setState(() {
             selectedTab = selectedTabIndex;
-            currentTabView = SubjectScreenMain();
+            currentTabView = YearWiseRecordsMain();
           });
           break;
         }
