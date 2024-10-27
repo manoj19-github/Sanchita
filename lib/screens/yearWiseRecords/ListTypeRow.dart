@@ -16,13 +16,13 @@ class ListTypeRow extends StatelessWidget {
     double leftAmount = 0;
     double percentageLeftAmount = 0;
 
-    if (double.tryParse(expenceObj["spend_amount"]) != null &&
-        double.tryParse(expenceObj["total_budget"]) != null) {
-      percentageLeftAmount = double.tryParse(expenceObj["spend_amount"])! /
-          double.tryParse(expenceObj["total_budget"])!;
-      leftAmount = double.tryParse(expenceObj["total_budget"])! -
-          double.tryParse(expenceObj["spend_amount"])!;
-    }
+    // if (double.tryParse(expenceObj["spend_amount"]) != null &&
+    //     double.tryParse(expenceObj["total_budget"]) != null) {
+    //   percentageLeftAmount = double.tryParse(expenceObj["spend_amount"])! /
+    //       double.tryParse(expenceObj["total_budget"])!;
+    //   leftAmount = double.tryParse(expenceObj["total_budget"])! -
+    //       double.tryParse(expenceObj["spend_amount"])!;
+    // }
 
     return Padding(
       padding: const EdgeInsets.only(top: 10),
@@ -30,7 +30,7 @@ class ListTypeRow extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           onTap: onTapHandler,
           child: Container(
-            height: 72,
+            height: 64,
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
             decoration: BoxDecoration(
               border: Border.all(color: TColor.border.withOpacity(0.1)),
@@ -54,39 +54,32 @@ class ListTypeRow extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
                             expenceObj["name"],
                             style: TextStyle(
                                 color: TColor.white,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600),
-                          ),
+                                ),
+                                Text(
+                                  UTILMAIN
+                                      .indianRupeesFormat(expenceObj["price"]),
+                                  style: TextStyle(
+                                      color: TColor.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ]),
+                          
                         ],
                       ),
                     ),
-                    const SizedBox(width: 8),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          UTILMAIN
-                              .indianRupeesFormat(expenceObj["spend_amount"]),
-                          style: TextStyle(
-                              color: TColor.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ],
-                    ),
                   ],
                 ),
-                const SizedBox(height: 8),
-                LinearProgressIndicator(
-                    backgroundColor: TColor.gray60,
-                    minHeight: 3,
-                    valueColor: AlwaysStoppedAnimation(expenceObj["color"]),
-                    value: percentageLeftAmount)
               ],
             ),
           )),
