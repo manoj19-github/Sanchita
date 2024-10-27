@@ -35,14 +35,7 @@ class MonthGroupedRow extends StatelessWidget {
           MonthwiseExpenseRow(),
           MonthwiseExpenseRow(),
           MonthwiseExpenseRow(),
-          MonthwiseExpenseRow(),
-          MonthwiseExpenseRow(),
-          MonthwiseExpenseRow(),
-          MonthwiseExpenseRow(),
-          MonthwiseExpenseRow(),
-          MonthwiseExpenseRow(),
-          MonthwiseExpenseRow(),
-          MonthwiseExpenseRow(),
+          
         ],
       ),
     );
